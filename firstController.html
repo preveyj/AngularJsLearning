@@ -1,0 +1,27 @@
+<html ng-app="nameListApp">
+    <head>
+        <script src="libraries/angular.1.7.9.js"></script>
+        <script src="scripts/nameList.js"></script>
+        <link rel="stylesheet" href="styles/firstController.css"/>
+    </head>
+    <body>
+        <h3>First Controller</h3>
+        <h4>List of names:</h4>
+        <div ng-controller="NameListController as nameList">
+            <span>{{nameList.toBeGreeted()}} of {{nameList.names.length}} remaining to be greeted.</span>
+            [ <a href="" ng-click="nameList.archive()">archive</a> ]
+            <ul class="unstyled">
+                <li ng-repeat="name in nameList.names">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="name.greeted" />
+                        <span class="greeted-{{name.greeted}}">{{name.name}}</span>
+                    </label>
+                </li>
+            </ul>
+            <form ng-submit="nameList.addName()">
+                <input type="text" ng-model="nameList.nameText" size="30" placeholder="Add a new name here" />
+                <input class="btn-primary" type="submit" value="add" />
+            </form>
+        </div>
+    </body>
+</html>
